@@ -1,14 +1,18 @@
-# Frontend - React, Next.js, Vite, etc.
-FROM node:20
+# Use official Node.js image
+FROM node:18-alpine
 
+# Set working directory
 WORKDIR /app
 
-COPY frontend/package*.json ./
-RUN npm install --legacy-peer-deps
+# Install dependencies
+COPY package*.json ./
+RUN npm install
 
-COPY frontend/ .
+# Copy frontend code
+COPY . .
 
-# Expose frontend port
+# Expose React dev server port
 EXPOSE 3000
 
+# Start development server
 CMD ["npm", "start"]
