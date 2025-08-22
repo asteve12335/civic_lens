@@ -1,7 +1,15 @@
 from fastapi import FastAPI
+from routers import health
 
-app = FastAPI()
+app = FastAPI(
+    title="CivicLens API",
+    version="0.1.0",
+    description="Backend for CivicLens civic issue reporting platform"
+)
+
+#include routers
+app.include_router(health.router)
 
 @app.get("/")
-def read_root():
-    return {"status": "Backend running we thank God!"}
+def root():
+    return {"message": "Welcome to CivicLens API"}
