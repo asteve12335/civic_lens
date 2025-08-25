@@ -9,7 +9,7 @@ def health_check():
     """Simple Health check endpoint"""
     return {"status": "ok"}
 
-
+@router.get("/version")
 def version_info():
     """Return app version and environment info"""
     return {
