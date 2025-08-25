@@ -13,10 +13,18 @@ services:
     restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
     container_name: civiclens-frontend
+    working_dir: /app
+    command: npm run dev -- --host 0.0.0.0 --port 5173
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
     ports:
-      - "3000:80"
+      - "5173:5173"
     depends_on:
       - backend
+    environment:
+      - NODE_ENV=development
     restart: unless-stopped
