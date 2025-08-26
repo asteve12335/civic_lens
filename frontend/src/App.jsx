@@ -5,7 +5,7 @@ function App() {
 
   useEffect(() => {
     // Call backend (running on port 8000 inside docker-compose)
-    fetch("http://localhost:8000/health/")
+  fetch("/health/")
       .then((res) => res.json())
       .then((data) => setApiStatus(data))
       .catch((err) => console.error("API error:", err));
